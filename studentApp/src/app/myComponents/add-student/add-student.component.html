@@ -1,0 +1,31 @@
+
+<div class="container ">
+  <div class="col-lg-4 col-md-8 col-sm-12 m-5 p-5 form-box ">
+    <h2 class="text-center border-bottom bw-4 pb-3 ">Add Student </h2>
+    <form class="formGroup" [formGroup] = "formStudent" >
+
+    <div class="formGroup mb-3">
+      <label for="exampleInputEmail1" class="form-label">Name</label>
+      <input type="text" class="form-control bdr" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="studentName">
+      <span class="text-danger " *ngIf="formStudent.get('studentName').hasError('required') && formStudent.get('studentName').touched">Required</span>
+    </div>
+    <div class="formGroup mb-3">
+      <label for="exampleInputPassword1" class="form-label">age</label>
+      <input type="number" class="form-control bdr" id="exampleInputPassword1" formControlName="age">
+      <span class="text-danger" *ngIf="formStudent.get('age').hasError('required') && formStudent.get('age').touched">Required</span>
+    </div>
+    <div class="formGroup mb-3">
+        <label for="exampleInputPassword1" class="form-label">City</label>
+        <input type="text" class="form-control bdr" id="exampleInputPassword1" formControlName="city" >
+        <span class="text-danger" *ngIf="formStudent.get('city').hasError('required') && formStudent.get('city').touched">Required</span>
+      </div>
+      
+    
+       <div class="row justify-content-center  pt-3">
+        <button   class="btn btn-primary col-lg-4 butn mr-0" (click)="addStudent()" [disabled]="!formStudent.valid">Submit</button>
+        <button   class="btn btn-success col-lg-4 butn mr-0" (click)="cancel()">reset</button>
+       </div>
+
+  </form>
+</div>
+</div>

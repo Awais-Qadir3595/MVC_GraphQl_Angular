@@ -1,0 +1,76 @@
+
+<div class="container  p-4  ">
+ <div class="col-lg-4 ">
+<h3 class="m-3">Students Data </h3>
+<p>it require page refresh after delete and update. i am working to resolve this issue</p>
+<table class="table ">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">City</th>
+         
+        <th >delete</th>
+        <th >Update</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of studentData;index as i">
+         
+            <tr>
+                <th scope="row">{{i+1}}</th>
+                <td>{{item.name}}</td>
+                <td>{{item.age}}</td>
+                <td>{{item.city}}</td>
+            <td><button class="btn btn-info" (click)="deleteStudent(item.id,i)">delete</button></td>
+            <td><button class="btn btn-info" (click)="openModal(item.id)">update</button></td>
+              </tr>
+        
+     
+    
+    </tbody>
+  </table>
+</div>
+
+<div class="modal" id="UpdateMpdal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <form class="formGroup" [formGroup] = "formStudent" >
+
+          <div class="formGroup mb-3">
+            <label for="exampleInputEmail1" class="form-label">Name</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="studentName">
+            <span class="text-danger " *ngIf="formStudent.get('studentName').hasError('required') && formStudent.get('studentName').touched">Required</span>
+          </div>
+          <div class="formGroup mb-3">
+            <label for="exampleInputPassword1" class="form-label">age</label>
+            <input type="number" class="form-control" id="exampleInputPassword1" formControlName="age">
+            <span class="text-danger" *ngIf="formStudent.get('age').hasError('required') && formStudent.get('age').touched">Required</span>
+          </div>
+          <div class="formGroup mb-3">
+              <label for="exampleInputPassword1" class="form-label">City</label>
+              <input type="text" class="form-control" id="exampleInputPassword1" formControlName="city" >
+              <span class="text-danger" *ngIf="formStudent.get('city').hasError('required') && formStudent.get('city').touched">Required</span>
+            </div>
+            
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()">Close</button>
+              <button type="button" class="btn btn-primary" (click)="updateStudent()">Save changes</button>
+            </div>
+             
+      
+        </form>
+      </div>
+    
+    </div>
+  </div>
+</div>
+ 
+
+
+</div>
